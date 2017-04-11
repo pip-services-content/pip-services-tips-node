@@ -1,0 +1,1 @@
+export { AttachmentsFactory } from './AttachmentsFactory';
