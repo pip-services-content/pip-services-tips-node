@@ -5,7 +5,7 @@ import { FilterParams } from 'pip-services-commons-node';
 import { PagingParams } from 'pip-services-commons-node';
 
 import { IAttachmentsPersistence } from '../../src/persistence/IAttachmentsPersistence';
-import { AttachmentsV1 } from '../../src/data/version1/AttachmentsV1';
+import { AttachmentV1 } from '../../src/data/version1/AttachmentV1';
 import { ReferenceV1 } from '../../src/data/version1/ReferenceV1';
 
 export class AttachmentsPersistenceFixture {

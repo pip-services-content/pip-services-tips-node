@@ -1,2 +1,2 @@
 export { ReferenceV1 } from './ReferenceV1';
-export { AttachmentsV1 } from './AttachmentsV1';
+export { AttachmentV1 } from './AttachmentV1';

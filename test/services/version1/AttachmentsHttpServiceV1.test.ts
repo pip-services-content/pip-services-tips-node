@@ -7,7 +7,7 @@ import { ConfigParams } from 'pip-services-commons-node';
 import { Descriptor } from 'pip-services-commons-node';
 import { References } from 'pip-services-commons-node';
 
-import { AttachmentsV1 } from '../../../src/data/version1/AttachmentsV1';
+import { AttachmentV1 } from '../../../src/data/version1/AttachmentV1';
 import { ReferenceV1 } from '../../../src/data/version1/ReferenceV1';
 import { AttachmentsMemoryPersistence } from '../../../src/persistence/AttachmentsMemoryPersistence';
 import { AttachmentsController } from '../../../src/logic/AttachmentsController';

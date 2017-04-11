@@ -6,12 +6,12 @@ import { DataPage } from 'pip-services-commons-node';
 import { IdentifiableMongoDbPersistence } from 'pip-services-data-node';
 
 import { ReferenceV1 } from '../data/version1/ReferenceV1';
-import { AttachmentsV1 } from '../data/version1/AttachmentsV1';
+import { AttachmentV1 } from '../data/version1/AttachmentV1';
 import { IAttachmentsPersistence } from './IAttachmentsPersistence';
 import { AttachmentsMongoDbSchema } from './AttachmentsMongoDbSchema';
 
 export class AttachmentsMongoDbPersistence 
-    extends IdentifiableMongoDbPersistence<AttachmentsV1, string> 
+    extends IdentifiableMongoDbPersistence<AttachmentV1, string> 
     implements IAttachmentsPersistence {
 
     constructor() {
@@ -19,7 +19,7 @@ export class AttachmentsMongoDbPersistence
     }
 
     public addReference(correlationId: string, id: string, reference: ReferenceV1, 
-        callback?: (err: any, item: AttachmentsV1) => void): void {
+        callback?: (err: any, item: AttachmentV1) => void): void {
 
         let filter = {
             _id: id
@@ -52,7 +52,7 @@ export class AttachmentsMongoDbPersistence
     }
 
     public removeReference(correlationId: string, id: string, reference: ReferenceV1, 
-        callback?: (err: any, item: AttachmentsV1) => void): void {
+        callback?: (err: any, item: AttachmentV1) => void): void {
 
         let filter = {
             _id: id

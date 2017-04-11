@@ -6,7 +6,7 @@ import { Parameters } from 'pip-services-commons-node';
 import { FilterParams } from 'pip-services-commons-node';
 import { PagingParams } from 'pip-services-commons-node';
 
-import { AttachmentsV1 } from '../data/version1/AttachmentsV1';
+import { AttachmentV1 } from '../data/version1/AttachmentV1';
 import { IAttachmentsBusinessLogic } from './IAttachmentsBusinessLogic';
 
 export class AttachmentsCommandSet extends CommandSet {
