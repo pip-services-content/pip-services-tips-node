@@ -5,8 +5,12 @@ import { Schema } from 'pip-services-commons-node';
 import { Parameters } from 'pip-services-commons-node';
 import { FilterParams } from 'pip-services-commons-node';
 import { PagingParams } from 'pip-services-commons-node';
+import { ObjectSchema } from 'pip-services-commons-node';
+import { ArraySchema } from 'pip-services-commons-node';
+import { TypeCode } from 'pip-services-commons-node';
 
 import { AttachmentV1 } from '../data/version1/AttachmentV1';
+import { ReferenceV1Schema } from '../data/version1/ReferenceV1Schema';
 import { IAttachmentsBusinessLogic } from './IAttachmentsBusinessLogic';
 
 export class AttachmentsCommandSet extends CommandSet {
@@ -28,7 +32,8 @@ export class AttachmentsCommandSet extends CommandSet {
 	private makeGetAttachmentByIdCommand(): ICommand {
 		return new Command(
 			"get_attachment_by_id",
-			null,
+			new ObjectSchema(true)
+				.withRequiredProperty('id', TypeCode.String),
 			(correlationId: string, args: Parameters, callback: (err: any, result: any) => void) => {
 				let id = args.getAsNullableString("id");
 				this._logic.getAttachmentById(correlationId, id, callback);
@@ -39,7 +44,9 @@ export class AttachmentsCommandSet extends CommandSet {
 	private makeAddAttachmentsCommand(): ICommand {
 		return new Command(
 			"add_attachments",
-			null,
+			new ObjectSchema(true)
+				.withRequiredProperty('reference', new ReferenceV1Schema())
+				.withRequiredProperty('ids', new ArraySchema(TypeCode.String)),
 			(correlationId: string, args: Parameters, callback: (err: any, result: any) => void) => {
 				let reference = args.get("reference");
 				let ids = args.get("ids");
@@ -51,7 +58,10 @@ export class AttachmentsCommandSet extends CommandSet {
 	private makeUpdateAttachmentsCommand(): ICommand {
 		return new Command(
 			"update_attachments",
-			null,
+			new ObjectSchema(true)
+				.withRequiredProperty('reference', new ReferenceV1Schema())
+				.withRequiredProperty('old_ids', new ArraySchema(TypeCode.String))
+				.withRequiredProperty('new_ids', new ArraySchema(TypeCode.String)),
 			(correlationId: string, args: Parameters, callback: (err: any, result: any) => void) => {
 				let reference = args.get("reference");
 				let oldIds = args.get("old_ids");
@@ -64,7 +74,9 @@ export class AttachmentsCommandSet extends CommandSet {
 	private makeRemoveAttachmentsCommand(): ICommand {
 		return new Command(
 			"remove_attachments",
-			null,
+			new ObjectSchema(true)
+				.withRequiredProperty('reference', new ReferenceV1Schema())
+				.withRequiredProperty('ids', new ArraySchema(TypeCode.String)),
 			(correlationId: string, args: Parameters, callback: (err: any, result: any) => void) => {
 				let reference = args.get("reference");
 				let ids = args.get("ids");

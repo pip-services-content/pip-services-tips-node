@@ -36,7 +36,8 @@ suite('AttachmentsSenecaPlugin', ()=> {
         seneca.act(
             {
                 role: 'attachments',
-                cmd: 'get_attachment_by_id' 
+                cmd: 'get_attachment_by_id',
+                id: '1'
             },
             (err, attachment) => {
                 assert.isNull(err);

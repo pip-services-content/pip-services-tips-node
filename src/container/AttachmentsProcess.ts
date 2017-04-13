@@ -5,15 +5,10 @@ import { AttachmentsFactory } from '../build/AttachmentsFactory';
 
 export class AttachmentsProcess extends ProcessContainer {
 
-    protected initReferences(references: IReferences): void {
-        super.initReferences(references);
-
-        // Factory to statically resolve attachments components
-        references.put(AttachmentsFactory.Descriptor, new AttachmentsFactory());
+    public constructor() {
+        super("attachments", "File attachments microservice");
+        this._factories.add(new AttachmentsFactory);
     }
 
-    public runWithArguments(args: string[]): void {
-        return this.runWithArgumentsOrConfigFile("attachments", args, "./config/config.yaml");
-    }
 
 }
