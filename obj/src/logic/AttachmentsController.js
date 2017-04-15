@@ -15,6 +15,7 @@ class AttachmentsController {
     setReferences(references) {
         this._dependencyResolver.setReferences(references);
         this._persistence = this._dependencyResolver.getOneRequired('persistence');
+        this._blobsClient = this._dependencyResolver.getOneOptional('blobs');
     }
     getCommandSet() {
         if (this._commandSet == null)
@@ -79,7 +80,10 @@ class AttachmentsController {
             this._persistence.removeReference(correlationId, id, reference, (err, attachment) => {
                 if (attachment)
                     attachments.push(attachment);
-                callback(err);
+                if (attachment.references == null || attachment.references.length == null)
+                    this.deleteAttachmentById(correlationId, attachment.id, callback);
+                else
+                    callback(err);
             });
         }, (err) => {
             if (callback)
@@ -87,9 +91,18 @@ class AttachmentsController {
         });
     }
     deleteAttachmentById(correlationId, id, callback) {
-        this._persistence.deleteById(correlationId, id, callback);
+        this._persistence.deleteById(correlationId, id, (err, attachment) => {
+            if (err == null && this._blobsClient != null) {
+                this._blobsClient.deleteBlobById(correlationId, id, (err, blob) => {
+                    if (callback)
+                        callback(err, attachment);
+                });
+            }
+            else if (callback)
+                callback(err, attachment);
+        });
     }
 }
-AttachmentsController._defaultConfig = pip_services_commons_node_1.ConfigParams.fromTuples('dependencies.persistence', 'pip-services-attachments:persistence:*:*:1.0');
+AttachmentsController._defaultConfig = pip_services_commons_node_1.ConfigParams.fromTuples('dependencies.persistence', 'pip-services-attachments:persistence:*:*:1.0', 'dependencies.blobs', 'pip-services-blos:client:*:*:1.0');
 exports.AttachmentsController = AttachmentsController;
 //# sourceMappingURL=AttachmentsController.js.map

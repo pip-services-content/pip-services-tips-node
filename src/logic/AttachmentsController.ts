@@ -12,6 +12,7 @@ import { PagingParams } from 'pip-services-commons-node';
 import { DataPage } from 'pip-services-commons-node';
 import { ICommandable } from 'pip-services-commons-node';
 import { CommandSet } from 'pip-services-commons-node';
+import { IBlobsClientV1 } from 'pip-clients-blobs-node';
 
 import { ReferenceV1 } from '../data/version1/ReferenceV1';
 import { AttachmentV1 } from '../data/version1/AttachmentV1';
@@ -21,11 +22,13 @@ import { AttachmentsCommandSet } from './AttachmentsCommandSet';
 
 export class AttachmentsController implements IConfigurable, IReferenceable, ICommandable, IAttachmentsBusinessLogic {
     private static _defaultConfig: ConfigParams = ConfigParams.fromTuples(
-        'dependencies.persistence', 'pip-services-attachments:persistence:*:*:1.0'
+        'dependencies.persistence', 'pip-services-attachments:persistence:*:*:1.0',
+        'dependencies.blobs', 'pip-services-blos:client:*:*:1.0'
     );
 
     private _dependencyResolver: DependencyResolver = new DependencyResolver(AttachmentsController._defaultConfig);
     private _persistence: IAttachmentsPersistence;
+    private _blobsClient: IBlobsClientV1;
     private _commandSet: AttachmentsCommandSet;
 
     public configure(config: ConfigParams): void {
@@ -35,6 +38,7 @@ export class AttachmentsController implements IConfigurable, IReferenceable, ICo
     public setReferences(references: IReferences): void {
         this._dependencyResolver.setReferences(references);
         this._persistence = this._dependencyResolver.getOneRequired<IAttachmentsPersistence>('persistence');
+        this._blobsClient = this._dependencyResolver.getOneOptional<IBlobsClientV1>('blobs');
     }
 
     public getCommandSet(): CommandSet {
@@ -119,7 +123,9 @@ export class AttachmentsController implements IConfigurable, IReferenceable, ICo
                 this._persistence.removeReference(correlationId, id, reference, (err, attachment) => {
                     if (attachment)
                         attachments.push(attachment);
-                    callback(err);
+                    if (attachment.references == null || attachment.references.length == null)
+                        this.deleteAttachmentById(correlationId, attachment.id, callback)
+                    else callback(err);
                 });
             },
             (err) => {
@@ -130,6 +136,12 @@ export class AttachmentsController implements IConfigurable, IReferenceable, ICo
 
     public deleteAttachmentById(correlationId: string, id: string,
         callback?: (err: any, attachment: AttachmentV1) => void): void {
-        this._persistence.deleteById(correlationId, id, callback);
+        this._persistence.deleteById(correlationId, id, (err, attachment) => {
+            if (err == null && this._blobsClient != null) {
+                this._blobsClient.deleteBlobById(correlationId, id, (err, blob) => {
+                    if (callback) callback(err, attachment);
+                })
+            } else if (callback) callback(err, attachment);
+        });
     }
 }

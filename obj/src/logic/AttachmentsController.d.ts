@@ -11,6 +11,7 @@ export declare class AttachmentsController implements IConfigurable, IReferencea
     private static _defaultConfig;
     private _dependencyResolver;
     private _persistence;
+    private _blobsClient;
     private _commandSet;
     configure(config: ConfigParams): void;
     setReferences(references: IReferences): void;
