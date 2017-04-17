@@ -1,0 +1,1 @@
+export { TipsFactory } from './TipsFactory';
