@@ -131,9 +131,9 @@ Now the client is ready to perform operations
 client.createTip(
     null,
     { 
-        category: 'maintenance',
-        title: { en: 'Maintenance on Jan 01' },
-        content: { en: 'Our servers will be shutdown for maintenance on Jan 01' }
+        topics: ['ui'],
+        title: { en: 'Context help' },
+        content: { en: 'Press Ctrl-F1 to get context help' }
     },
     function (err, tip) {
         ...
