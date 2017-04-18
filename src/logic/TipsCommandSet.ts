@@ -48,7 +48,7 @@ export class TipsCommandSet extends CommandSet {
 
 	private makeGetRandomTipCommand(): ICommand {
 		return new Command(
-			"get_randome_tip",
+			"get_random_tip",
 			new ObjectSchema(true)
 				.withOptionalProperty('filter', new FilterParamsSchema()),
 			(correlationId: string, args: Parameters, callback: (err: any, result: any) => void) => {
