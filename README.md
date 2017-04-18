@@ -23,6 +23,42 @@ This microservice has no dependencies on other microservices.
   - [HTTP Version 1](doc/HttpProtocolV1.md)
   - [Seneca Version 1](doc/SenecaProtocolV1.md)
 
+##  Contract
+
+Logical contract of the microservice is presented below. For physical implementation (HTTP/REST, Thrift, Seneca, Lambda, etc.),
+please, refer to documentation of the specific protocol.
+
+```typescript
+AttachmentV1 implements IStringIdentifiable {
+    public id: string;
+    public references: ReferenceV1[];
+}
+
+class ReferenceV1
+{
+    public id: string;
+    public type: string;
+    public name: string;
+}
+
+IAttachmentsV1 {
+    getAttachmentById(correlationId: string, id: string,
+        callback: (err: any, attachment: AttachmentV1) => void): void;
+    
+    addAttachments(correlationId: string, reference: ReferenceV1, ids: string[],
+        callback?: (err: any, attachments: AttachmentV1[]) => void): void;
+
+    updateAttachments(correlationId: string, reference: ReferenceV1, oldIds: string[], newIds: string[],
+        callback?: (err: any, attachments: AttachmentV1[]) => void): void;
+
+    removeAttachments(correlationId: string, reference: ReferenceV1, ids: string[],
+        callback?: (err: any, attachments: AttachmentV1[]) => void): void;
+
+    deleteAttachmentById(correlationId: string, id: string,
+        callback?: (err: any, attachment: AttachmentV1) => void): void;
+}
+```
+
 ## Download
 
 Right now the only way to get the microservice is to check it out directly from github repository
