@@ -29,7 +29,7 @@ Logical contract of the microservice is presented below. For physical implementa
 please, refer to documentation of the specific protocol.
 
 ```typescript
-AttachmentV1 implements IStringIdentifiable {
+class AttachmentV1 implements IStringIdentifiable {
     public id: string;
     public references: ReferenceV1[];
 }
@@ -41,7 +41,7 @@ class ReferenceV1
     public name: string;
 }
 
-IAttachmentsV1 {
+interface IAttachmentsV1 {
     getAttachmentById(correlationId: string, id: string,
         callback: (err: any, attachment: AttachmentV1) => void): void;
     
