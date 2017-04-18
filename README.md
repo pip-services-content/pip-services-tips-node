@@ -27,6 +27,80 @@ This microservice has dependencies on the following microservices:
   - [HTTP Version 1](doc/HttpProtocolV1.md)
   - [Seneca Version 1](doc/SenecaProtocolV1.md)
 
+##  Contract
+
+Logical contract of the microservice is presented below. For physical implementation (HTTP/REST, Thrift, Seneca, Lambda, etc.),
+please, refer to documentation of the specific protocol.
+
+```typescript
+class TipV1 implements IStringIdentifiable {
+    /* Identification */
+    public id: string;
+    public topics: string[];
+
+    /* Automatically managed fields */
+    public creator: PartyReferenceV1;
+    public create_time: Date;
+
+    /* Content */
+    public title?: MultiString;
+    public content?: MultiString;
+    public more_url?: string;
+    public pic_ids?: string[];
+    public docs?: DocumentReferenceV1[];
+
+    /* Search */
+    public tags?: string[];
+    public all_tags?: string[];
+
+    /* Status */
+    public status?: string;
+
+    /* Custom fields */
+    public custom_hdr?: any;
+    public custom_dat?: any;
+}
+
+class DocumentReferenceV1 implements IStringIdentifiable {
+    public id: string;
+    public name?: string;
+}
+
+class PartyReferenceV1 implements IStringIdentifiable {
+    public id: string;
+    public name?: string;
+    public email?: string;
+}
+
+class TipStatusV1 {
+    public static readonly New = "new";
+    public static readonly Writing = "writing";
+    public static readonly Translating = "translating";
+    public static readonly Verifying = "verifying";
+    public static readonly Completed = "completed";
+}
+
+interface ITipsV1 {
+    getTips(correlationId: string, filter: FilterParams, paging: PagingParams,
+        callback: (err: any, page: DataPage<TipV1>) => void): void;
+
+    getRandomTip(correlationId: string, filter: FilterParams,
+        callback: (err: any, tip: TipV1) => void): void;
+
+    getTipById(correlationId: string, tipId: string,
+        callback: (err: any, tip: TipV1) => void): void;
+
+    createTip(correlationId: string, tip: TipV1,
+        callback: (err: any, tip: TipV1) => void): void;
+
+    updateTip(correlationId: string, tip: TipV1,
+        callback: (err: any, tip: TipV1) => void): void;
+
+    deleteTipById(correlationId: string, tipId: string,
+        callback: (err: any, tip: TipV1) => void): void;
+}
+```
+
 ## Download
 
 Right now the only way to get the microservice is to check it out directly from github repository
