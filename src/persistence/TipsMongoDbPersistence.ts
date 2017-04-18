@@ -76,7 +76,7 @@ export class TipsMongoDbPersistence
     }
 
     public getPageByFilter(correlationId: string, filter: FilterParams, paging: PagingParams, callback: any) {
-        super.getPageByFilter(correlationId, this.composeFilter(filter), paging, '-time', null, callback);
+        super.getPageByFilter(correlationId, this.composeFilter(filter), paging, '-create_time', null, callback);
     }
 
     public getOneRandom(correlationId: string, filter: FilterParams,

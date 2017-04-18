@@ -55,7 +55,7 @@ class TipsMongoDbPersistence extends pip_services_data_node_1.IdentifiableMongoD
         return criteria.length > 0 ? { $and: criteria } : {};
     }
     getPageByFilter(correlationId, filter, paging, callback) {
-        super.getPageByFilter(correlationId, this.composeFilter(filter), paging, '-time', null, callback);
+        super.getPageByFilter(correlationId, this.composeFilter(filter), paging, '-create_time', null, callback);
     }
     getOneRandom(correlationId, filter, callback) {
         super.getOneRandom(correlationId, this.composeFilter(filter), callback);

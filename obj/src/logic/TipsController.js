@@ -55,7 +55,6 @@ class TipsController {
     updateTip(correlationId, tip, callback) {
         let oldTip = null;
         let newTip = null;
-        tip.create_time = new Date();
         tip.all_tags = pip_services_commons_node_3.TagsProcessor.extractHashTags(tip, 'title.en', 'title.sp', 'title.fr', 'title.de', 'title.ru', 'content.en', 'content.sp', 'content.fr', 'content.de', 'content.ru');
         async.series([
             (callback) => {

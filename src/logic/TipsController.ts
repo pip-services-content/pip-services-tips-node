@@ -99,7 +99,6 @@ export class TipsController implements IConfigurable, IReferenceable, ICommandab
         let oldTip: TipV1 = null;
         let newTip: TipV1 = null;
         
-        tip.create_time = new Date();
         tip.all_tags = TagsProcessor.extractHashTags(
             tip, 
             'title.en', 'title.sp', 'title.fr', 'title.de', 'title.ru',
