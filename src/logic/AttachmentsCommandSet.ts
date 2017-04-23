@@ -11,12 +11,12 @@ import { TypeCode } from 'pip-services-commons-node';
 
 import { AttachmentV1 } from '../data/version1/AttachmentV1';
 import { ReferenceV1Schema } from '../data/version1/ReferenceV1Schema';
-import { IAttachmentsBusinessLogic } from './IAttachmentsBusinessLogic';
+import { IAttachmentsController } from './IAttachmentsController';
 
 export class AttachmentsCommandSet extends CommandSet {
-    private _logic: IAttachmentsBusinessLogic;
+    private _logic: IAttachmentsController;
 
-	constructor(logic: IAttachmentsBusinessLogic) {
+	constructor(logic: IAttachmentsController) {
 		super();
 
 		this._logic = logic;

@@ -5,7 +5,7 @@ import { DataPage } from 'pip-services-commons-node';
 import { ReferenceV1 } from '../data/version1/ReferenceV1';
 import { AttachmentV1 } from '../data/version1/AttachmentV1';
 
-export interface IAttachmentsBusinessLogic {
+export interface IAttachmentsController {
     getAttachmentById(correlationId: string, id: string,
         callback: (err: any, attachment: AttachmentV1) => void): void;
     

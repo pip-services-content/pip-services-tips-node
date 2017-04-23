@@ -1,2 +1,2 @@
-export { IAttachmentsBusinessLogic } from './IAttachmentsBusinessLogic';
+export { IAttachmentsController } from './IAttachmentsController';
 export { AttachmentsController } from './AttachmentsController';

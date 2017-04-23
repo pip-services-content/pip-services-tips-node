@@ -17,10 +17,10 @@ import { IBlobsClientV1 } from 'pip-clients-blobs-node';
 import { ReferenceV1 } from '../data/version1/ReferenceV1';
 import { AttachmentV1 } from '../data/version1/AttachmentV1';
 import { IAttachmentsPersistence } from '../persistence/IAttachmentsPersistence';
-import { IAttachmentsBusinessLogic } from './IAttachmentsBusinessLogic';
+import { IAttachmentsController } from './IAttachmentsController';
 import { AttachmentsCommandSet } from './AttachmentsCommandSet';
 
-export class AttachmentsController implements IConfigurable, IReferenceable, ICommandable, IAttachmentsBusinessLogic {
+export class AttachmentsController implements IConfigurable, IReferenceable, ICommandable, IAttachmentsController {
     private static _defaultConfig: ConfigParams = ConfigParams.fromTuples(
         'dependencies.persistence', 'pip-services-attachments:persistence:*:*:1.0',
         'dependencies.blobs', 'pip-services-blos:client:*:*:1.0'

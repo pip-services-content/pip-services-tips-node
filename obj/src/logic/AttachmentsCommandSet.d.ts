@@ -1,8 +1,8 @@
 import { CommandSet } from 'pip-services-commons-node';
-import { IAttachmentsBusinessLogic } from './IAttachmentsBusinessLogic';
+import { IAttachmentsController } from './IAttachmentsController';
 export declare class AttachmentsCommandSet extends CommandSet {
     private _logic;
-    constructor(logic: IAttachmentsBusinessLogic);
+    constructor(logic: IAttachmentsController);
     private makeGetAttachmentByIdCommand();
     private makeAddAttachmentsCommand();
     private makeUpdateAttachmentsCommand();

@@ -6,8 +6,8 @@ import { ICommandable } from 'pip-services-commons-node';
 import { CommandSet } from 'pip-services-commons-node';
 import { ReferenceV1 } from '../data/version1/ReferenceV1';
 import { AttachmentV1 } from '../data/version1/AttachmentV1';
-import { IAttachmentsBusinessLogic } from './IAttachmentsBusinessLogic';
-export declare class AttachmentsController implements IConfigurable, IReferenceable, ICommandable, IAttachmentsBusinessLogic {
+import { IAttachmentsController } from './IAttachmentsController';
+export declare class AttachmentsController implements IConfigurable, IReferenceable, ICommandable, IAttachmentsController {
     private static _defaultConfig;
     private _dependencyResolver;
     private _persistence;
