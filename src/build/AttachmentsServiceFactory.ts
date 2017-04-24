@@ -8,7 +8,7 @@ import { AttachmentsController } from '../logic/AttachmentsController';
 import { AttachmentsHttpServiceV1 } from '../services/version1/AttachmentsHttpServiceV1';
 import { AttachmentsSenecaServiceV1 } from '../services/version1/AttachmentsSenecaServiceV1'; 
 
-export class AttachmentsFactory extends Factory {
+export class AttachmentsServiceFactory extends Factory {
 	public static Descriptor = new Descriptor("pip-services-attachments", "factory", "default", "default", "1.0");
 	public static MemoryPersistenceDescriptor = new Descriptor("pip-services-attachments", "persistence", "memory", "*", "1.0");
 	public static FilePersistenceDescriptor = new Descriptor("pip-services-attachments", "persistence", "file", "*", "1.0");
@@ -19,12 +19,12 @@ export class AttachmentsFactory extends Factory {
 	
 	constructor() {
 		super();
-		this.registerAsType(AttachmentsFactory.MemoryPersistenceDescriptor, AttachmentsMemoryPersistence);
-		this.registerAsType(AttachmentsFactory.FilePersistenceDescriptor, AttachmentsFilePersistence);
-		this.registerAsType(AttachmentsFactory.MongoDbPersistenceDescriptor, AttachmentsMongoDbPersistence);
-		this.registerAsType(AttachmentsFactory.ControllerDescriptor, AttachmentsController);
-		this.registerAsType(AttachmentsFactory.SenecaServiceDescriptor, AttachmentsSenecaServiceV1);
-		this.registerAsType(AttachmentsFactory.HttpServiceDescriptor, AttachmentsHttpServiceV1);
+		this.registerAsType(AttachmentsServiceFactory.MemoryPersistenceDescriptor, AttachmentsMemoryPersistence);
+		this.registerAsType(AttachmentsServiceFactory.FilePersistenceDescriptor, AttachmentsFilePersistence);
+		this.registerAsType(AttachmentsServiceFactory.MongoDbPersistenceDescriptor, AttachmentsMongoDbPersistence);
+		this.registerAsType(AttachmentsServiceFactory.ControllerDescriptor, AttachmentsController);
+		this.registerAsType(AttachmentsServiceFactory.SenecaServiceDescriptor, AttachmentsSenecaServiceV1);
+		this.registerAsType(AttachmentsServiceFactory.HttpServiceDescriptor, AttachmentsHttpServiceV1);
 	}
 	
 }

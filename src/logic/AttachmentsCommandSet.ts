@@ -9,7 +9,7 @@ import { ObjectSchema } from 'pip-services-commons-node';
 import { ArraySchema } from 'pip-services-commons-node';
 import { TypeCode } from 'pip-services-commons-node';
 
-import { AttachmentV1 } from '../data/version1/AttachmentV1';
+import { BlobAttachmentV1 } from '../data/version1/BlobAttachmentV1';
 import { ReferenceV1Schema } from '../data/version1/ReferenceV1Schema';
 import { IAttachmentsController } from './IAttachmentsController';
 

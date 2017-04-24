@@ -6,20 +6,20 @@ import { DataPage } from 'pip-services-commons-node';
 import { IdentifiableMongoDbPersistence } from 'pip-services-data-node';
 
 import { ReferenceV1 } from '../data/version1/ReferenceV1';
-import { AttachmentV1 } from '../data/version1/AttachmentV1';
+import { BlobAttachmentV1 } from '../data/version1/BlobAttachmentV1';
 import { IAttachmentsPersistence } from './IAttachmentsPersistence';
-import { AttachmentsMongoDbSchema } from './AttachmentsMongoDbSchema';
+import { BlobAttachmentMongoDbSchema } from './BlobAttachmentMongoDbSchema';
 
 export class AttachmentsMongoDbPersistence 
-    extends IdentifiableMongoDbPersistence<AttachmentV1, string> 
+    extends IdentifiableMongoDbPersistence<BlobAttachmentV1, string> 
     implements IAttachmentsPersistence {
 
     constructor() {
-        super('attachments', AttachmentsMongoDbSchema());
+        super('attachments', BlobAttachmentMongoDbSchema());
     }
 
     public addReference(correlationId: string, id: string, reference: ReferenceV1, 
-        callback?: (err: any, item: AttachmentV1) => void): void {
+        callback?: (err: any, item: BlobAttachmentV1) => void): void {
 
         let filter = {
             _id: id
@@ -52,7 +52,7 @@ export class AttachmentsMongoDbPersistence
     }
 
     public removeReference(correlationId: string, id: string, reference: ReferenceV1, 
-        callback?: (err: any, item: AttachmentV1) => void): void {
+        callback?: (err: any, item: BlobAttachmentV1) => void): void {
 
         let filter = {
             _id: id

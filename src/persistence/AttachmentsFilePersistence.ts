@@ -5,15 +5,15 @@ import { DataPage } from 'pip-services-commons-node';
 import { JsonFilePersister } from 'pip-services-data-node';
 
 import { AttachmentsMemoryPersistence } from './AttachmentsMemoryPersistence';
-import { AttachmentV1 } from '../data/version1/AttachmentV1';
+import { BlobAttachmentV1 } from '../data/version1/BlobAttachmentV1';
 
 export class AttachmentsFilePersistence extends AttachmentsMemoryPersistence {
-	protected _persister: JsonFilePersister<AttachmentV1>;
+	protected _persister: JsonFilePersister<BlobAttachmentV1>;
 
     public constructor(path?: string) {
         super();
 
-        this._persister = new JsonFilePersister<AttachmentV1>(path);
+        this._persister = new JsonFilePersister<BlobAttachmentV1>(path);
         this._loader = this._persister;
         this._saver = this._persister;
     }

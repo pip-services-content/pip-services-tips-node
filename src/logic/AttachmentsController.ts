@@ -15,7 +15,7 @@ import { CommandSet } from 'pip-services-commons-node';
 import { IBlobsClientV1 } from 'pip-clients-blobs-node';
 
 import { ReferenceV1 } from '../data/version1/ReferenceV1';
-import { AttachmentV1 } from '../data/version1/AttachmentV1';
+import { BlobAttachmentV1 } from '../data/version1/BlobAttachmentV1';
 import { IAttachmentsPersistence } from '../persistence/IAttachmentsPersistence';
 import { IAttachmentsController } from './IAttachmentsController';
 import { AttachmentsCommandSet } from './AttachmentsCommandSet';
@@ -48,13 +48,13 @@ export class AttachmentsController implements IConfigurable, IReferenceable, ICo
     }
 
     public getAttachmentById(correlationId: string, id: string,
-        callback: (err: any, attachment: AttachmentV1) => void): void {
+        callback: (err: any, attachment: BlobAttachmentV1) => void): void {
         this._persistence.getOneById(correlationId, id, callback);
     }
     
     public addAttachments(correlationId: string, reference: ReferenceV1, ids: string[],
-        callback?: (err: any, attachments: AttachmentV1[]) => void): void {
-        let attachments: AttachmentV1[] = [];
+        callback?: (err: any, attachments: BlobAttachmentV1[]) => void): void {
+        let attachments: BlobAttachmentV1[] = [];
         async.each(
             ids, 
             (id, callback) => {
@@ -71,9 +71,9 @@ export class AttachmentsController implements IConfigurable, IReferenceable, ICo
     }
 
     public updateAttachments(correlationId: string, reference: ReferenceV1, oldIds: string[], newIds: string[],
-        callback?: (err: any, attachments: AttachmentV1[]) => void): void {
+        callback?: (err: any, attachments: BlobAttachmentV1[]) => void): void {
 
-        let attachments: AttachmentV1[] = [];
+        let attachments: BlobAttachmentV1[] = [];
         async.parallel([
             // Remove obsolete ids
             (callback) => {
@@ -115,8 +115,8 @@ export class AttachmentsController implements IConfigurable, IReferenceable, ICo
     }
 
     public removeAttachments(correlationId: string, reference: ReferenceV1, ids: string[],
-        callback?: (err: any, attachments: AttachmentV1[]) => void): void {
-        let attachments: AttachmentV1[] = [];
+        callback?: (err: any, attachments: BlobAttachmentV1[]) => void): void {
+        let attachments: BlobAttachmentV1[] = [];
         async.each(
             ids, 
             (id, callback) => {
@@ -135,7 +135,7 @@ export class AttachmentsController implements IConfigurable, IReferenceable, ICo
     }
 
     public deleteAttachmentById(correlationId: string, id: string,
-        callback?: (err: any, attachment: AttachmentV1) => void): void {
+        callback?: (err: any, attachment: BlobAttachmentV1) => void): void {
         this._persistence.deleteById(correlationId, id, (err, attachment) => {
             if (err == null && this._blobsClient != null) {
                 this._blobsClient.deleteBlobById(correlationId, id, (err, blob) => {

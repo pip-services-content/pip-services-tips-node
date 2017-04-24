@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 let Mixed = mongoose_1.Schema.Types.Mixed;
-exports.AttachmentsMongoDbSchema = function (collection) {
+exports.BlobAttachmentMongoDbSchema = function (collection) {
     collection = collection || 'attachments';
     let schema = new mongoose_1.Schema({
         _id: { type: String, unique: true },
@@ -22,4 +22,4 @@ exports.AttachmentsMongoDbSchema = function (collection) {
     });
     return schema;
 };
-//# sourceMappingURL=AttachmentsMongoDbSchema.js.map
+//# sourceMappingURL=BlobAttachmentsMongoDbSchema.js.map

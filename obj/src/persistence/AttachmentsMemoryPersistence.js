@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
 const pip_services_data_node_1 = require("pip-services-data-node");
-const AttachmentV1_1 = require("../data/version1/AttachmentV1");
+const BlobAttachmentV1_1 = require("../data/version1/BlobAttachmentV1");
 class AttachmentsMemoryPersistence extends pip_services_data_node_1.IdentifiableMemoryPersistence {
     constructor() {
         super();
@@ -13,7 +13,7 @@ class AttachmentsMemoryPersistence extends pip_services_data_node_1.Identifiable
             item.references.push(reference);
         }
         else {
-            item = new AttachmentV1_1.AttachmentV1(id, [reference]);
+            item = new BlobAttachmentV1_1.BlobAttachmentV1(id, [reference]);
             this._items.push(item);
         }
         this._logger.trace(correlationId, "Added reference to %s", id);

@@ -2,7 +2,7 @@ import { IStringIdentifiable } from 'pip-services-commons-node';
 
 import { ReferenceV1 } from './ReferenceV1';
 
-export class AttachmentV1 implements IStringIdentifiable {
+export class BlobAttachmentV1 implements IStringIdentifiable {
 
     public constructor(id: string, references?: ReferenceV1[]) {
         this.id = id;

@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
 const pip_services_data_node_1 = require("pip-services-data-node");
-const AttachmentsMongoDbSchema_1 = require("./AttachmentsMongoDbSchema");
+const BlobAttachmentMongoDbSchema_1 = require("./BlobAttachmentMongoDbSchema");
 class AttachmentsMongoDbPersistence extends pip_services_data_node_1.IdentifiableMongoDbPersistence {
     constructor() {
-        super('attachments', AttachmentsMongoDbSchema_1.AttachmentsMongoDbSchema());
+        super('attachments', BlobAttachmentMongoDbSchema_1.BlobAttachmentMongoDbSchema());
     }
     addReference(correlationId, id, reference, callback) {
         let filter = {

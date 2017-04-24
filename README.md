@@ -1,8 +1,8 @@
-# Attachments Microservice
+# Blob Attachments Microservice
 
-This is a file attachments microservice from Pip.Services library. 
-It records all documents that attached to a particilar file.
-When last document is disattached, the file gets removed.
+This is a blob attachments microservice from Pip.Services library. 
+It records all documents that attached to a particilar blob.
+When last document is disattached, the blob gets removed.
 
 The microservice currently supports the following deployment options:
 * Deployment platforms: Standalone Process, Seneca Plugin
@@ -29,7 +29,7 @@ Logical contract of the microservice is presented below. For physical implementa
 please, refer to documentation of the specific protocol.
 
 ```typescript
-class AttachmentV1 implements IStringIdentifiable {
+class BlobAttachmentV1 implements IStringIdentifiable {
     public id: string;
     public references: ReferenceV1[];
 }
@@ -43,19 +43,19 @@ class ReferenceV1
 
 interface IAttachmentsV1 {
     getAttachmentById(correlationId: string, id: string,
-        callback: (err: any, attachment: AttachmentV1) => void): void;
+        callback: (err: any, attachment: BlobAttachmentV1) => void): void;
     
     addAttachments(correlationId: string, reference: ReferenceV1, ids: string[],
-        callback?: (err: any, attachments: AttachmentV1[]) => void): void;
+        callback?: (err: any, attachments: BlobAttachmentV1[]) => void): void;
 
     updateAttachments(correlationId: string, reference: ReferenceV1, oldIds: string[], newIds: string[],
-        callback?: (err: any, attachments: AttachmentV1[]) => void): void;
+        callback?: (err: any, attachments: BlobAttachmentV1[]) => void): void;
 
     removeAttachments(correlationId: string, reference: ReferenceV1, ids: string[],
-        callback?: (err: any, attachments: AttachmentV1[]) => void): void;
+        callback?: (err: any, attachments: BlobAttachmentV1[]) => void): void;
 
     deleteAttachmentById(correlationId: string, id: string,
-        callback?: (err: any, attachment: AttachmentV1) => void): void;
+        callback?: (err: any, attachment: BlobAttachmentV1) => void): void;
 }
 ```
 

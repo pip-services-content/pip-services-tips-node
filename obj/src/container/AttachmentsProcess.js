@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const pip_services_container_node_1 = require("pip-services-container-node");
-const AttachmentsFactory_1 = require("../build/AttachmentsFactory");
+const AttachmentsServiceFactory_1 = require("../build/AttachmentsServiceFactory");
 class AttachmentsProcess extends pip_services_container_node_1.ProcessContainer {
     constructor() {
-        super("attachments", "File attachments microservice");
-        this._factories.add(new AttachmentsFactory_1.AttachmentsFactory);
+        super("attachments", "Blob attachments microservice");
+        this._factories.add(new AttachmentsServiceFactory_1.AttachmentsServiceFactory);
     }
 }
 exports.AttachmentsProcess = AttachmentsProcess;

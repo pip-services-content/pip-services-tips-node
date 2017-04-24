@@ -6,11 +6,11 @@ import { DataPage } from 'pip-services-commons-node';
 import { IdentifiableMemoryPersistence } from 'pip-services-data-node';
 
 import { ReferenceV1 } from '../data/version1/ReferenceV1';
-import { AttachmentV1 } from '../data/version1/AttachmentV1';
+import { BlobAttachmentV1 } from '../data/version1/BlobAttachmentV1';
 import { IAttachmentsPersistence } from './IAttachmentsPersistence';
 
 export class AttachmentsMemoryPersistence 
-    extends IdentifiableMemoryPersistence<AttachmentV1, string> 
+    extends IdentifiableMemoryPersistence<BlobAttachmentV1, string> 
     implements IAttachmentsPersistence {
 
     constructor() {
@@ -18,13 +18,13 @@ export class AttachmentsMemoryPersistence
     }
 
     public addReference(correlationId: string, id: string, reference: ReferenceV1, 
-        callback?: (err: any, item: AttachmentV1) => void): void {
-        let item: AttachmentV1 = _.find(this._items, (x) => x.id == id);
+        callback?: (err: any, item: BlobAttachmentV1) => void): void {
+        let item: BlobAttachmentV1 = _.find(this._items, (x) => x.id == id);
 
         if (item != null) {
             item.references.push(reference)
         } else {
-            item = new AttachmentV1(id, [reference]);
+            item = new BlobAttachmentV1(id, [reference]);
             this._items.push(item);
         }
 
@@ -36,8 +36,8 @@ export class AttachmentsMemoryPersistence
     }
 
     public removeReference(correlationId: string, id: string, reference: ReferenceV1, 
-        callback?: (err: any, item: AttachmentV1) => void): void {
-        let item: AttachmentV1 = _.find(this._items, (x) => x.id == id);
+        callback?: (err: any, item: BlobAttachmentV1) => void): void {
+        let item: BlobAttachmentV1 = _.find(this._items, (x) => x.id == id);
         
         let removed = false;
         if (item != null) {
