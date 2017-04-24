@@ -1,2 +1,2 @@
 import { Schema } from 'mongoose';
-export declare let BlobAttachmentMongoDbSchema: (collection?: string) => Schema;
+export declare let BlobAttachmentsMongoDbSchema: (collection?: string) => Schema;

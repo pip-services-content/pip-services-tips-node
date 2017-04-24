@@ -38,7 +38,7 @@ Example:
 ### <a name="persistence_file"></a> File
 
 Flat file persistence has the following configuration properties:
-- path: string - file path where BlobAttachmentV1 objects are stored. The object are written into the file in JSON format.
+- path: string - file path where BlobAttachmentsV1 objects are stored. The object are written into the file in JSON format.
 - options: object - Misc configuration options
   - max_page_size: number - Maximum number of items per page (default: 100)
 
