@@ -29,7 +29,7 @@ Logical contract of the microservice is presented below. For physical implementa
 please, refer to documentation of the specific protocol.
 
 ```typescript
-class BlobAttachmentsV1 implements IStringIdentifiable {
+class BlobAttachmentV1 implements IStringIdentifiable {
     public id: string;
     public references: ReferenceV1[];
 }
@@ -43,19 +43,19 @@ class ReferenceV1
 
 interface IAttachmentsV1 {
     getAttachmentById(correlationId: string, id: string,
-        callback: (err: any, attachment: BlobAttachmentsV1) => void): void;
+        callback: (err: any, attachment: BlobAttachmentV1) => void): void;
     
     addAttachments(correlationId: string, reference: ReferenceV1, ids: string[],
-        callback?: (err: any, attachments: BlobAttachmentsV1[]) => void): void;
+        callback?: (err: any, attachments: BlobAttachmentV1[]) => void): void;
 
     updateAttachments(correlationId: string, reference: ReferenceV1, oldIds: string[], newIds: string[],
-        callback?: (err: any, attachments: BlobAttachmentsV1[]) => void): void;
+        callback?: (err: any, attachments: BlobAttachmentV1[]) => void): void;
 
     removeAttachments(correlationId: string, reference: ReferenceV1, ids: string[],
-        callback?: (err: any, attachments: BlobAttachmentsV1[]) => void): void;
+        callback?: (err: any, attachments: BlobAttachmentV1[]) => void): void;
 
     deleteAttachmentById(correlationId: string, id: string,
-        callback?: (err: any, attachment: BlobAttachmentsV1) => void): void;
+        callback?: (err: any, attachment: BlobAttachmentV1) => void): void;
 }
 ```
 

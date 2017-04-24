@@ -1,9 +1,9 @@
 import { IdentifiableMemoryPersistence } from 'pip-services-data-node';
 import { ReferenceV1 } from '../data/version1/ReferenceV1';
-import { BlobAttachmentsV1 } from '../data/version1/BlobAttachmentsV1';
+import { BlobAttachmentV1 } from '../data/version1/BlobAttachmentV1';
 import { IAttachmentsPersistence } from './IAttachmentsPersistence';
-export declare class AttachmentsMemoryPersistence extends IdentifiableMemoryPersistence<BlobAttachmentsV1, string> implements IAttachmentsPersistence {
+export declare class AttachmentsMemoryPersistence extends IdentifiableMemoryPersistence<BlobAttachmentV1, string> implements IAttachmentsPersistence {
     constructor();
-    addReference(correlationId: string, id: string, reference: ReferenceV1, callback?: (err: any, item: BlobAttachmentsV1) => void): void;
-    removeReference(correlationId: string, id: string, reference: ReferenceV1, callback?: (err: any, item: BlobAttachmentsV1) => void): void;
+    addReference(correlationId: string, id: string, reference: ReferenceV1, callback?: (err: any, item: BlobAttachmentV1) => void): void;
+    removeReference(correlationId: string, id: string, reference: ReferenceV1, callback?: (err: any, item: BlobAttachmentV1) => void): void;
 }
