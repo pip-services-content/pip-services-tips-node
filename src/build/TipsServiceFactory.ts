@@ -8,7 +8,7 @@ import { TipsController } from '../logic/TipsController';
 import { TipsHttpServiceV1 } from '../services/version1/TipsHttpServiceV1';
 import { TipsSenecaServiceV1 } from '../services/version1/TipsSenecaServiceV1'; 
 
-export class TipsFactory extends Factory {
+export class TipsServiceFactory extends Factory {
 	public static Descriptor = new Descriptor("pip-services-tips", "factory", "default", "default", "1.0");
 	public static MemoryPersistenceDescriptor = new Descriptor("pip-services-tips", "persistence", "memory", "*", "1.0");
 	public static FilePersistenceDescriptor = new Descriptor("pip-services-tips", "persistence", "file", "*", "1.0");
@@ -19,12 +19,12 @@ export class TipsFactory extends Factory {
 	
 	constructor() {
 		super();
-		this.registerAsType(TipsFactory.MemoryPersistenceDescriptor, TipsMemoryPersistence);
-		this.registerAsType(TipsFactory.FilePersistenceDescriptor, TipsFilePersistence);
-		this.registerAsType(TipsFactory.MongoDbPersistenceDescriptor, TipsMongoDbPersistence);
-		this.registerAsType(TipsFactory.ControllerDescriptor, TipsController);
-		this.registerAsType(TipsFactory.SenecaServiceDescriptor, TipsSenecaServiceV1);
-		this.registerAsType(TipsFactory.HttpServiceDescriptor, TipsHttpServiceV1);
+		this.registerAsType(TipsServiceFactory.MemoryPersistenceDescriptor, TipsMemoryPersistence);
+		this.registerAsType(TipsServiceFactory.FilePersistenceDescriptor, TipsFilePersistence);
+		this.registerAsType(TipsServiceFactory.MongoDbPersistenceDescriptor, TipsMongoDbPersistence);
+		this.registerAsType(TipsServiceFactory.ControllerDescriptor, TipsController);
+		this.registerAsType(TipsServiceFactory.SenecaServiceDescriptor, TipsSenecaServiceV1);
+		this.registerAsType(TipsServiceFactory.HttpServiceDescriptor, TipsHttpServiceV1);
 	}
 	
 }

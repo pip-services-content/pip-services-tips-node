@@ -1,2 +1,2 @@
-export { ITipsBusinessLogic } from './ITipsBusinessLogic';
+export { ITipsController } from './ITipsController';
 export { TipsController } from './TipsController';

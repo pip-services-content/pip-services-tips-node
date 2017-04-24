@@ -2,7 +2,7 @@ import { FilterParams } from 'pip-services-commons-node';
 import { PagingParams } from 'pip-services-commons-node';
 import { DataPage } from 'pip-services-commons-node';
 import { TipV1 } from '../data/version1/TipV1';
-export interface ITipsBusinessLogic {
+export interface ITipsController {
     getTips(correlationId: string, filter: FilterParams, paging: PagingParams, callback: (err: any, page: DataPage<TipV1>) => void): void;
     getRandomTip(correlationId: string, filter: FilterParams, callback: (err: any, tip: TipV1) => void): void;
     getTipById(correlationId: string, tipId: string, callback: (err: any, tip: TipV1) => void): void;

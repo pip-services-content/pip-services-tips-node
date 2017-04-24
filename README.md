@@ -46,8 +46,8 @@ class TipV1 implements IStringIdentifiable {
     public title?: MultiString;
     public content?: MultiString;
     public more_url?: string;
-    public pic_ids?: string[];
-    public docs?: DocumentReferenceV1[];
+    public pics?: AttachmentV1[];
+    public docs?: AttachmentV1[];
 
     /* Search */
     public tags?: string[];
@@ -61,12 +61,13 @@ class TipV1 implements IStringIdentifiable {
     public custom_dat?: any;
 }
 
-class DocumentReferenceV1 implements IStringIdentifiable {
-    public id: string;
+class AttachmentV1 {
+    public id?: string;
+    public uri?: string;
     public name?: string;
 }
 
-class PartyReferenceV1 implements IStringIdentifiable {
+class PartyReferenceV1 {
     public id: string;
     public name?: string;
     public email?: string;

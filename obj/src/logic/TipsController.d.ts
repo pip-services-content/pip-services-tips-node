@@ -8,8 +8,8 @@ import { DataPage } from 'pip-services-commons-node';
 import { ICommandable } from 'pip-services-commons-node';
 import { CommandSet } from 'pip-services-commons-node';
 import { TipV1 } from '../data/version1/TipV1';
-import { ITipsBusinessLogic } from './ITipsBusinessLogic';
-export declare class TipsController implements IConfigurable, IReferenceable, ICommandable, ITipsBusinessLogic {
+import { ITipsController } from './ITipsController';
+export declare class TipsController implements IConfigurable, IReferenceable, ICommandable, ITipsController {
     private static _defaultConfig;
     private _dependencyResolver;
     private _persistence;

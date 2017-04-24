@@ -13,12 +13,12 @@ import { PagingParamsSchema } from 'pip-services-commons-node';
 import { TipV1 } from '../data/version1/TipV1';
 import { PartyReferenceV1Schema } from '../data/version1/PartyReferenceV1Schema';
 import { TipV1Schema } from '../data/version1/TipV1Schema';
-import { ITipsBusinessLogic } from './ITipsBusinessLogic';
+import { ITipsController } from './ITipsController';
 
 export class TipsCommandSet extends CommandSet {
-    private _logic: ITipsBusinessLogic;
+    private _logic: ITipsController;
 
-	constructor(logic: ITipsBusinessLogic) {
+	constructor(logic: ITipsController) {
 		super();
 
 		this._logic = logic;

@@ -1,7 +1,6 @@
 let _ = require('lodash');
 
 import { ReferenceV1 } from 'pip-clients-attachments-node';
-import { AttachmentV1 } from 'pip-clients-attachments-node';
 import { IAttachmentsClientV1 } from 'pip-clients-attachments-node';
 
 import { TipV1 } from '../data/version1/TipV1';
@@ -15,12 +14,14 @@ export class AttachmentsConnector {
     private extractAttachmentIds(tip: TipV1): string[] {
         let ids: string[] = [];
 
-        _.each(tip.pic_ids, (id) => {
-            ids.push(id);
+        _.each(tip.pics, (pic) => {
+            if (pic.id)
+                ids.push(pic.id);
         });
 
         _.each(tip.docs, (doc) => {
-            ids.push(doc.id);
+            if (doc.id)
+                ids.push(doc.id);
         });
 
         return ids;

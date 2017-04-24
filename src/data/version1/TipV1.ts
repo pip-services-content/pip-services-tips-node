@@ -1,7 +1,7 @@
 import { IStringIdentifiable } from 'pip-services-commons-node';
 import { MultiString } from 'pip-services-commons-node';
 
-import { DocumentReferenceV1 } from './DocumentReferenceV1';
+import { AttachmentV1 } from './AttachmentV1';
 import { PartyReferenceV1 } from './PartyReferenceV1';
 
 export class TipV1 implements IStringIdentifiable {
@@ -15,7 +15,7 @@ export class TipV1 implements IStringIdentifiable {
         this.content = content;
         this.more_url = moreUrl;
 
-        this.pic_ids = [];
+        this.pics = [];
         this.docs = [];
         this.create_time = new Date();
     }
@@ -32,8 +32,8 @@ export class TipV1 implements IStringIdentifiable {
     public title?: MultiString;
     public content?: MultiString;
     public more_url?: string;
-    public pic_ids?: string[];
-    public docs?: DocumentReferenceV1[];
+    public pics?: AttachmentV1[];
+    public docs?: AttachmentV1[];
 
     /* Search */
     public tags?: string[];

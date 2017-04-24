@@ -1,6 +1,6 @@
 import { IStringIdentifiable } from 'pip-services-commons-node';
 import { MultiString } from 'pip-services-commons-node';
-import { DocumentReferenceV1 } from './DocumentReferenceV1';
+import { AttachmentV1 } from './AttachmentV1';
 import { PartyReferenceV1 } from './PartyReferenceV1';
 export declare class TipV1 implements IStringIdentifiable {
     constructor(id: string, topics: string[], creator?: PartyReferenceV1, title?: MultiString, content?: MultiString, moreUrl?: string);
@@ -11,8 +11,8 @@ export declare class TipV1 implements IStringIdentifiable {
     title?: MultiString;
     content?: MultiString;
     more_url?: string;
-    pic_ids?: string[];
-    docs?: DocumentReferenceV1[];
+    pics?: AttachmentV1[];
+    docs?: AttachmentV1[];
     tags?: string[];
     all_tags?: string[];
     status?: string;

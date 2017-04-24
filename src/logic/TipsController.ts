@@ -19,11 +19,11 @@ import { IAttachmentsClientV1 } from 'pip-clients-attachments-node';
 import { PartyReferenceV1 } from '../data/version1/PartyReferenceV1';
 import { TipV1 } from '../data/version1/TipV1';
 import { ITipsPersistence } from '../persistence/ITipsPersistence';
-import { ITipsBusinessLogic } from './ITipsBusinessLogic';
+import { ITipsController } from './ITipsController';
 import { TipsCommandSet } from './TipsCommandSet';
 import { AttachmentsConnector } from './AttachmentsConnector';
 
-export class TipsController implements IConfigurable, IReferenceable, ICommandable, ITipsBusinessLogic {
+export class TipsController implements IConfigurable, IReferenceable, ICommandable, ITipsController {
     private static _defaultConfig: ConfigParams = ConfigParams.fromTuples(
         'dependencies.persistence', 'pip-services-tips:persistence:*:*:1.0',
         'dependencies.attachments', 'pip-services-attachments:client:*:*:1.0'

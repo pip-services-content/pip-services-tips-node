@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var DocumentReferenceV1_1 = require("./DocumentReferenceV1");
-exports.DocumentReferenceV1 = DocumentReferenceV1_1.DocumentReferenceV1;
-var DocumentReferenceV1Schema_1 = require("./DocumentReferenceV1Schema");
-exports.DocumentReferenceV1Schema = DocumentReferenceV1Schema_1.DocumentReferenceV1Schema;
+var AttachmentV1_1 = require("./AttachmentV1");
+exports.AttachmentV1 = AttachmentV1_1.AttachmentV1;
+var AttachmentV1Schema_1 = require("./AttachmentV1Schema");
+exports.AttachmentV1Schema = AttachmentV1Schema_1.AttachmentV1Schema;
 var PartyReferenceV1_1 = require("./PartyReferenceV1");
 exports.PartyReferenceV1 = PartyReferenceV1_1.PartyReferenceV1;
 var PartyReferenceV1Schema_1 = require("./PartyReferenceV1Schema");

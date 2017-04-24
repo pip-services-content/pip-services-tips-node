@@ -1,1 +1,1 @@
-export { TipsFactory } from './TipsFactory';
+export { TipsServiceFactory } from './TipsServiceFactory';

@@ -1,8 +1,8 @@
 import { CommandSet } from 'pip-services-commons-node';
-import { ITipsBusinessLogic } from './ITipsBusinessLogic';
+import { ITipsController } from './ITipsController';
 export declare class TipsCommandSet extends CommandSet {
     private _logic;
-    constructor(logic: ITipsBusinessLogic);
+    constructor(logic: ITipsController);
     private makeGetTipsCommand();
     private makeGetRandomTipCommand();
     private makeGetTipByIdCommand();

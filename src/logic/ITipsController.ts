@@ -5,7 +5,7 @@ import { DataPage } from 'pip-services-commons-node';
 import { PartyReferenceV1 } from '../data/version1/PartyReferenceV1';
 import { TipV1 } from '../data/version1/TipV1';
 
-export interface ITipsBusinessLogic {
+export interface ITipsController {
     getTips(correlationId: string, filter: FilterParams, paging: PagingParams,
         callback: (err: any, page: DataPage<TipV1>) => void): void;
 

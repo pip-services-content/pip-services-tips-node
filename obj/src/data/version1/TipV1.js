@@ -8,7 +8,7 @@ class TipV1 {
         this.title = title;
         this.content = content;
         this.more_url = moreUrl;
-        this.pic_ids = [];
+        this.pics = [];
         this.docs = [];
         this.create_time = new Date();
     }
