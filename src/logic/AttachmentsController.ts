@@ -55,19 +55,37 @@ export class AttachmentsController implements IConfigurable, IReferenceable, ICo
     public addAttachments(correlationId: string, reference: ReferenceV1, ids: string[],
         callback?: (err: any, attachments: BlobAttachmentV1[]) => void): void {
         let attachments: BlobAttachmentV1[] = [];
-        async.each(
-            ids, 
-            (id, callback) => {
-                this._persistence.addReference(correlationId, id, reference, (err, attachment) => {
-                    if (attachment)
-                        attachments.push(attachment);
-                    callback(err);
-                });
+
+        async.series([
+            // Record new references to all blobs
+            (callback) => {
+                async.each(
+                    ids, 
+                    (id, callback) => {
+                        this._persistence.addReference(correlationId, id, reference, (err, attachment) => {
+                            if (attachment)
+                                attachments.push(attachment);
+                            callback(err);
+                        });
+                    },
+                    callback
+                );
             },
-            (err) => {
-                if (callback) callback(err, attachments);
+            // Mark new blobs completed
+            (callback) => {
+                let blobIds = [];
+                _.each(attachments, (a) => {
+                    if (a.references && a.references.length <= 1)
+                        blobIds.push(a.id);
+                });
+
+                if (this._blobsClient != null && blobIds.length > 0)
+                    this._blobsClient.markBlobsCompleted(correlationId, blobIds, callback);
+                else callback();
             }
-        );
+        ], (err) => {
+            if (callback) callback(err, attachments);
+        });
     }
 
     public updateAttachments(correlationId: string, reference: ReferenceV1, oldIds: string[], newIds: string[],
@@ -123,7 +141,7 @@ export class AttachmentsController implements IConfigurable, IReferenceable, ICo
                 this._persistence.removeReference(correlationId, id, reference, (err, attachment) => {
                     if (attachment)
                         attachments.push(attachment);
-                    if (attachment.references == null || attachment.references.length == null)
+                    if (attachment.references == null || attachment.references.length == 0)
                         this.deleteAttachmentById(correlationId, attachment.id, callback)
                     else callback(err);
                 });

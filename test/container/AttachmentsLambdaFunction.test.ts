@@ -141,8 +141,7 @@ suite('AttachmentsLambdaFunction', ()=> {
                     (err, item) => {
                         assert.isNull(err);
 
-                        assert.isObject(item);
-                        assert.lengthOf(item.references, 0);
+                        assert.isNull(item);
 
                         callback();
                     }

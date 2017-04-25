@@ -27,13 +27,30 @@ class AttachmentsController {
     }
     addAttachments(correlationId, reference, ids, callback) {
         let attachments = [];
-        async.each(ids, (id, callback) => {
-            this._persistence.addReference(correlationId, id, reference, (err, attachment) => {
-                if (attachment)
-                    attachments.push(attachment);
-                callback(err);
-            });
-        }, (err) => {
+        async.series([
+            // Record new references to all blobs
+            (callback) => {
+                async.each(ids, (id, callback) => {
+                    this._persistence.addReference(correlationId, id, reference, (err, attachment) => {
+                        if (attachment)
+                            attachments.push(attachment);
+                        callback(err);
+                    });
+                }, callback);
+            },
+            // Mark new blobs completed
+            (callback) => {
+                let blobIds = [];
+                _.each(attachments, (a) => {
+                    if (a.references && a.references.length <= 1)
+                        blobIds.push(a.id);
+                });
+                if (this._blobsClient != null && blobIds.length > 0)
+                    this._blobsClient.markBlobsCompleted(correlationId, blobIds, callback);
+                else
+                    callback();
+            }
+        ], (err) => {
             if (callback)
                 callback(err, attachments);
         });
@@ -80,7 +97,7 @@ class AttachmentsController {
             this._persistence.removeReference(correlationId, id, reference, (err, attachment) => {
                 if (attachment)
                     attachments.push(attachment);
-                if (attachment.references == null || attachment.references.length == null)
+                if (attachment.references == null || attachment.references.length == 0)
                     this.deleteAttachmentById(correlationId, attachment.id, callback);
                 else
                     callback(err);
