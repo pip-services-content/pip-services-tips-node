@@ -1,8 +1,7 @@
 /node_modules
 /npm-debug.log
 /.idea
-/config/config.yaml
-/config/test_connections.yaml
-/data/tips.test.json
-/data/tips.json
+/data/Announcements.test.json
+/data/announcements.json
 /obj/test
+/docker/id_rsa*
