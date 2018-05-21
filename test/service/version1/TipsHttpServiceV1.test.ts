@@ -80,7 +80,7 @@ suite('TipsHttpServiceV1', ()=> {
         async.series([
         // Create one tip
             (callback) => {
-                rest.post('/tips/create_tip',
+                rest.post('/v1/tips/create_tip',
                     {
                         tip: TIP1
                     },
@@ -99,7 +99,7 @@ suite('TipsHttpServiceV1', ()=> {
             },
         // Create another tip
             (callback) => {
-                rest.post('/tips/create_tip',
+                rest.post('/v1/tips/create_tip',
                     {
                         tip: TIP2
                     },
@@ -118,7 +118,7 @@ suite('TipsHttpServiceV1', ()=> {
             },
         // Get all tips
             (callback) => {
-                rest.post('/tips/get_tips',
+                rest.post('/v1/tips/get_tips',
                     {},
                     (err, req, res, page) => {
                         assert.isNull(err);
@@ -134,7 +134,7 @@ suite('TipsHttpServiceV1', ()=> {
             (callback) => {
                 tip1.content = <MultiString>{ en: 'Updated Content 1' };
 
-                rest.post('/tips/update_tip',
+                rest.post('/v1/tips/update_tip',
                     {
                         tip: tip1
                     },
@@ -153,7 +153,7 @@ suite('TipsHttpServiceV1', ()=> {
             },
         // Delete tip
             (callback) => {
-                rest.post('/tips/delete_tip_by_id',
+                rest.post('/v1/tips/delete_tip_by_id',
                     {
                         tip_id: tip1.id
                     },
@@ -166,7 +166,7 @@ suite('TipsHttpServiceV1', ()=> {
             },
         // Try to get delete tip
             (callback) => {
-                rest.post('/tips/get_tip_by_id',
+                rest.post('/v1/tips/get_tip_by_id',
                     {
                         tip_id: tip1.id
                     },
