@@ -55,7 +55,7 @@ suite('AttachmentsHttpServiceV1', ()=> {
         async.series([
         // Add attachments
             (callback) => {
-                rest.post('/attachments/add_attachments',
+                rest.post('/v1/attachments/add_attachments',
                     {
                         reference: {
                             type: 'goal',
@@ -72,7 +72,7 @@ suite('AttachmentsHttpServiceV1', ()=> {
             },
         // Add other attachments
             (callback) => {
-                rest.post('/attachments/add_attachments',
+                rest.post('/v1/attachments/add_attachments',
                     {
                         reference: {
                             type: 'goal',
@@ -89,7 +89,7 @@ suite('AttachmentsHttpServiceV1', ()=> {
             },
         // Check attachments has references
             (callback) => {
-                rest.post('/attachments/get_attachment_by_id',
+                rest.post('/v1/attachments/get_attachment_by_id',
                     {
                         id: '2'
                     },
@@ -105,7 +105,7 @@ suite('AttachmentsHttpServiceV1', ()=> {
             },
         // Remove reference
             (callback) => {
-                rest.post('/attachments/update_attachments',
+                rest.post('/v1/attachments/update_attachments',
                     {
                         reference: {
                             type: 'goal',
@@ -123,7 +123,7 @@ suite('AttachmentsHttpServiceV1', ()=> {
             },
         // Remove another reference
             (callback) => {
-                rest.post('/attachments/remove_attachments',
+                rest.post('/v1/attachments/remove_attachments',
                     {
                         reference: {
                             type: 'goal',
@@ -140,7 +140,7 @@ suite('AttachmentsHttpServiceV1', ()=> {
             },
         // Remove attachments
             (callback) => {
-                rest.post('/attachments/delete_attachment_by_id',
+                rest.post('/v1/attachments/delete_attachment_by_id',
                     {
                         id: '1'
                     },
@@ -155,7 +155,7 @@ suite('AttachmentsHttpServiceV1', ()=> {
             },
         // Try to get deleted attachments
             (callback) => {
-                rest.post('/attachments/get_attachment_by_id',
+                rest.post('/v1/attachments/get_attachment_by_id',
                     {
                         id: '2'
                     },

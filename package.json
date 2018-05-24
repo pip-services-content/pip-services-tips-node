@@ -42,6 +42,7 @@
         "pip-services-data-node": "^2.0.0",
         "pip-services-net-node": "^2.0.0",
         "pip-services-aws-node": "^1.0.0",
+        "pip-services-oss-node": "^1.0.0",
         "pip-clients-blobs-node": "git+ssh://git@github.com:pip-services-infrastructure/pip-clients-blobs-node.git"
     },
     "devDependencies": {
