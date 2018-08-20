@@ -74,9 +74,7 @@ export class TipsController implements IConfigurable, IReferenceable, ICommandab
 
         tip.create_time = new Date();
         tip.all_tags = TagsProcessor.extractHashTags(
-            tip, 
-            'title.en', 'title.sp', 'title.fr', 'title.de', 'title.ru',
-            'content.en', 'content.sp', 'content.fr', 'content.de', 'content.ru'
+            '#title.en#title.sp#title.fr#title.de#title.ru#content.en#content.sp#content.fr#content.de#content.ru'
         );
 
         async.series([
@@ -100,9 +98,7 @@ export class TipsController implements IConfigurable, IReferenceable, ICommandab
         let newTip: TipV1 = null;
         
         tip.all_tags = TagsProcessor.extractHashTags(
-            tip, 
-            'title.en', 'title.sp', 'title.fr', 'title.de', 'title.ru',
-            'content.en', 'content.sp', 'content.fr', 'content.de', 'content.ru'
+            '#title.en#title.sp#title.fr#title.de#title.ru#content.en#content.sp#content.fr#content.de#content.ru'
         );
 
         async.series([

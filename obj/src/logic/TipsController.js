@@ -37,7 +37,7 @@ class TipsController {
     createTip(correlationId, tip, callback) {
         let newTip = null;
         tip.create_time = new Date();
-        tip.all_tags = pip_services_commons_node_3.TagsProcessor.extractHashTags(tip, 'title.en', 'title.sp', 'title.fr', 'title.de', 'title.ru', 'content.en', 'content.sp', 'content.fr', 'content.de', 'content.ru');
+        tip.all_tags = pip_services_commons_node_3.TagsProcessor.extractHashTags('#title.en#title.sp#title.fr#title.de#title.ru#content.en#content.sp#content.fr#content.de#content.ru');
         async.series([
             (callback) => {
                 this._persistence.create(correlationId, tip, (err, data) => {
@@ -55,7 +55,7 @@ class TipsController {
     updateTip(correlationId, tip, callback) {
         let oldTip = null;
         let newTip = null;
-        tip.all_tags = pip_services_commons_node_3.TagsProcessor.extractHashTags(tip, 'title.en', 'title.sp', 'title.fr', 'title.de', 'title.ru', 'content.en', 'content.sp', 'content.fr', 'content.de', 'content.ru');
+        tip.all_tags = pip_services_commons_node_3.TagsProcessor.extractHashTags('#title.en#title.sp#title.fr#title.de#title.ru#content.en#content.sp#content.fr#content.de#content.ru');
         async.series([
             (callback) => {
                 this._persistence.getOneById(correlationId, tip.id, (err, data) => {

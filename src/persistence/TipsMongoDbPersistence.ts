@@ -5,7 +5,7 @@ import { PagingParams } from 'pip-services-commons-node';
 import { DataPage } from 'pip-services-commons-node';
 import { AnyValueMap } from 'pip-services-commons-node';
 import { TagsProcessor } from 'pip-services-commons-node';
-import { IdentifiableMongoDbPersistence } from 'pip-services-data-node';
+import { IdentifiableMongoDbPersistence } from 'pip-services-mongodb-node';
 
 import { PartyReferenceV1 } from '../data/version1/PartyReferenceV1';
 import { TipV1 } from '../data/version1/TipV1';
@@ -60,7 +60,7 @@ export class TipsMongoDbPersistence
         // Search by tags
         let tagsString = filter.getAsObject('tags');
         if (tagsString) {
-            let tags = TagsProcessor.compressTags(tagsString);
+            let tags = TagsProcessor.compressTags([tagsString]);
             criteria.push({ all_tags: { $in: tags } });
         }
 

@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
 const pip_services_commons_node_1 = require("pip-services-commons-node");
 const pip_services_commons_node_2 = require("pip-services-commons-node");
-const pip_services_data_node_1 = require("pip-services-data-node");
+const pip_services_mongodb_node_1 = require("pip-services-mongodb-node");
 const TipsMongoDbSchema_1 = require("./TipsMongoDbSchema");
-class TipsMongoDbPersistence extends pip_services_data_node_1.IdentifiableMongoDbPersistence {
+class TipsMongoDbPersistence extends pip_services_mongodb_node_1.IdentifiableMongoDbPersistence {
     constructor() {
         super('tips', TipsMongoDbSchema_1.TipsMongoDbSchema());
     }
@@ -43,7 +43,7 @@ class TipsMongoDbPersistence extends pip_services_data_node_1.IdentifiableMongoD
         // Search by tags
         let tagsString = filter.getAsObject('tags');
         if (tagsString) {
-            let tags = pip_services_commons_node_2.TagsProcessor.compressTags(tagsString);
+            let tags = pip_services_commons_node_2.TagsProcessor.compressTags([tagsString]);
             criteria.push({ all_tags: { $in: tags } });
         }
         let fromCreateTime = filter.getAsNullableDateTime('from_create_time');
