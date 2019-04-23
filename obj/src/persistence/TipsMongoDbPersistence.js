@@ -1,16 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
-const pip_services_commons_node_1 = require("pip-services-commons-node");
-const pip_services_commons_node_2 = require("pip-services-commons-node");
-const pip_services_mongodb_node_1 = require("pip-services-mongodb-node");
+const pip_services3_commons_node_1 = require("pip-services3-commons-node");
+const pip_services3_commons_node_2 = require("pip-services3-commons-node");
+const pip_services3_mongodb_node_1 = require("pip-services3-mongodb-node");
 const TipsMongoDbSchema_1 = require("./TipsMongoDbSchema");
-class TipsMongoDbPersistence extends pip_services_mongodb_node_1.IdentifiableMongoDbPersistence {
+class TipsMongoDbPersistence extends pip_services3_mongodb_node_1.IdentifiableMongoDbPersistence {
     constructor() {
         super('tips', TipsMongoDbSchema_1.TipsMongoDbSchema());
     }
     composeFilter(filter) {
-        filter = filter || new pip_services_commons_node_1.FilterParams();
+        filter = filter || new pip_services3_commons_node_1.FilterParams();
         let criteria = [];
         let search = filter.getAsNullableString('search');
         if (search != null) {
@@ -43,7 +43,7 @@ class TipsMongoDbPersistence extends pip_services_mongodb_node_1.IdentifiableMon
         // Search by tags
         let tagsString = filter.getAsObject('tags');
         if (tagsString) {
-            let tags = pip_services_commons_node_2.TagsProcessor.compressTags([tagsString]);
+            let tags = pip_services3_commons_node_2.TagsProcessor.compressTags([tagsString]);
             criteria.push({ all_tags: { $in: tags } });
         }
         let fromCreateTime = filter.getAsNullableDateTime('from_create_time');

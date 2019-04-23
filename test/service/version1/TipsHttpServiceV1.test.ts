@@ -3,10 +3,10 @@ let async = require('async');
 let restify = require('restify');
 let assert = require('chai').assert;
 
-import { ConfigParams } from 'pip-services-commons-node';
-import { Descriptor } from 'pip-services-commons-node';
-import { References } from 'pip-services-commons-node';
-import { MultiString } from 'pip-services-commons-node';
+import { ConfigParams } from 'pip-services3-commons-node';
+import { Descriptor } from 'pip-services3-commons-node';
+import { References } from 'pip-services3-commons-node';
+import { MultiString } from 'pip-services3-commons-node';
 
 import { PartyReferenceV1 } from '../../../src/data/version1/PartyReferenceV1';
 import { TipV1 } from '../../../src/data/version1/TipV1';
@@ -27,8 +27,8 @@ let TIP1 = <TipV1>{
         id: '1',
         name: 'Test User'
     },
-    title: <MultiString>{ en: 'Tip 1' },
-    content: <MultiString>{ en: 'Sample Tip #1' }
+    title: new MultiString({ en: 'Tip 1' }),
+    content: new MultiString({ en: 'Sample Tip #1' })
 };
 let TIP2 = <TipV1>{
     id: '2',
@@ -38,8 +38,8 @@ let TIP2 = <TipV1>{
         id: '1',
         name: 'Test User'
     },
-    title: <MultiString>{ en: 'Tip 2' },
-    content: <MultiString>{ en: 'Sample Tip #2' }
+    title: new MultiString({ en: 'Tip 2' }),
+    content: new MultiString({ en: 'Sample Tip #2' })
 };
 
 suite('TipsHttpServiceV1', ()=> {
@@ -89,7 +89,7 @@ suite('TipsHttpServiceV1', ()=> {
                         
                         assert.isObject(tip);
                         assert.sameMembers(tip.topics, TIP1.topics);
-                        assert.equal(tip.content.en, TIP1.content.en);
+                        assert.equal(tip.content.en, TIP1.content.get('en'));
 
                         tip1 = tip;
 
@@ -108,7 +108,7 @@ suite('TipsHttpServiceV1', ()=> {
                         
                         assert.isObject(tip);
                         assert.sameMembers(tip.topics, TIP2.topics);
-                        assert.equal(tip.content.en, TIP2.content.en);
+                        assert.equal(tip.content.en, TIP2.content.get('en'));
 
                         tip2 = tip;
 
@@ -132,7 +132,7 @@ suite('TipsHttpServiceV1', ()=> {
             },
         // Update the tip
             (callback) => {
-                tip1.content = <MultiString>{ en: 'Updated Content 1' };
+                tip1.content = new MultiString({ en: 'Updated Content 1' });
 
                 rest.post('/v1/tips/update_tip',
                     {

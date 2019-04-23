@@ -1,5 +1,5 @@
-import { IStringIdentifiable } from 'pip-services-commons-node';
-import { MultiString } from 'pip-services-commons-node';
+import { IStringIdentifiable } from 'pip-services3-commons-node';
+import { MultiString } from 'pip-services3-commons-node';
 import { AttachmentV1 } from './AttachmentV1';
 import { PartyReferenceV1 } from './PartyReferenceV1';
 export declare class TipV1 implements IStringIdentifiable {

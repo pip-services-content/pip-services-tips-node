@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 let async = require('async');
-const pip_services_commons_node_1 = require("pip-services-commons-node");
-const pip_services_commons_node_2 = require("pip-services-commons-node");
-const pip_services_commons_node_3 = require("pip-services-commons-node");
-const pip_services_commons_node_4 = require("pip-services-commons-node");
+const pip_services3_commons_node_1 = require("pip-services3-commons-node");
+const pip_services3_commons_node_2 = require("pip-services3-commons-node");
+const pip_services3_commons_node_3 = require("pip-services3-commons-node");
+const pip_services3_commons_node_4 = require("pip-services3-commons-node");
 const TipsCommandSet_1 = require("./TipsCommandSet");
 const AttachmentsConnector_1 = require("./AttachmentsConnector");
 class TipsController {
     constructor() {
-        this._dependencyResolver = new pip_services_commons_node_2.DependencyResolver(TipsController._defaultConfig);
+        this._dependencyResolver = new pip_services3_commons_node_2.DependencyResolver(TipsController._defaultConfig);
     }
     configure(config) {
         this._dependencyResolver.configure(config);
@@ -37,7 +37,7 @@ class TipsController {
     createTip(correlationId, tip, callback) {
         let newTip = null;
         tip.create_time = new Date();
-        tip.all_tags = pip_services_commons_node_3.TagsProcessor.extractHashTags('#title.en#title.sp#title.fr#title.de#title.ru#content.en#content.sp#content.fr#content.de#content.ru');
+        tip.all_tags = pip_services3_commons_node_3.TagsProcessor.extractHashTags('#title.en#title.sp#title.fr#title.de#title.ru#content.en#content.sp#content.fr#content.de#content.ru');
         async.series([
             (callback) => {
                 this._persistence.create(correlationId, tip, (err, data) => {
@@ -55,13 +55,13 @@ class TipsController {
     updateTip(correlationId, tip, callback) {
         let oldTip = null;
         let newTip = null;
-        tip.all_tags = pip_services_commons_node_3.TagsProcessor.extractHashTags('#title.en#title.sp#title.fr#title.de#title.ru#content.en#content.sp#content.fr#content.de#content.ru');
+        tip.all_tags = pip_services3_commons_node_3.TagsProcessor.extractHashTags('#title.en#title.sp#title.fr#title.de#title.ru#content.en#content.sp#content.fr#content.de#content.ru');
         async.series([
             (callback) => {
                 this._persistence.getOneById(correlationId, tip.id, (err, data) => {
                     oldTip = data;
                     if (err == null && data == null) {
-                        err = new pip_services_commons_node_4.NotFoundException(correlationId, 'TIP_NOT_FOUND', 'Tip ' + tip.id + ' was not found').withDetails('tip_id', tip.id);
+                        err = new pip_services3_commons_node_4.NotFoundException(correlationId, 'TIP_NOT_FOUND', 'Tip ' + tip.id + ' was not found').withDetails('tip_id', tip.id);
                     }
                     callback(err);
                 });
@@ -96,6 +96,6 @@ class TipsController {
         });
     }
 }
-TipsController._defaultConfig = pip_services_commons_node_1.ConfigParams.fromTuples('dependencies.persistence', 'pip-services-tips:persistence:*:*:1.0', 'dependencies.attachments', 'pip-services-attachments:client:*:*:1.0');
+TipsController._defaultConfig = pip_services3_commons_node_1.ConfigParams.fromTuples('dependencies.persistence', 'pip-services-tips:persistence:*:*:1.0', 'dependencies.attachments', 'pip-services-attachments:client:*:*:1.0');
 exports.TipsController = TipsController;
 //# sourceMappingURL=TipsController.js.map

@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
-const pip_services_commons_node_1 = require("pip-services-commons-node");
-const pip_services_data_node_1 = require("pip-services-data-node");
-const pip_services_commons_node_2 = require("pip-services-commons-node");
-class TipsMemoryPersistence extends pip_services_data_node_1.IdentifiableMemoryPersistence {
+const pip_services3_commons_node_1 = require("pip-services3-commons-node");
+const pip_services3_data_node_1 = require("pip-services3-data-node");
+const pip_services3_commons_node_2 = require("pip-services3-commons-node");
+class TipsMemoryPersistence extends pip_services3_data_node_1.IdentifiableMemoryPersistence {
     constructor() {
         super();
     }
@@ -45,14 +45,14 @@ class TipsMemoryPersistence extends pip_services_data_node_1.IdentifiableMemoryP
         return false;
     }
     composeFilter(filter) {
-        filter = filter || new pip_services_commons_node_1.FilterParams();
+        filter = filter || new pip_services3_commons_node_1.FilterParams();
         let search = filter.getAsNullableString('search');
         let id = filter.getAsNullableString('id');
         let topicsString = filter.get('topics');
         let topics = topicsString != null ? topicsString.split(',') : null;
         let status = filter.getAsNullableString('status');
         let tagsString = filter.get('tags');
-        let tags = tagsString != null ? pip_services_commons_node_2.TagsProcessor.compressTags([tagsString]) : null;
+        let tags = tagsString != null ? pip_services3_commons_node_2.TagsProcessor.compressTags([tagsString]) : null;
         let fromCreateTime = filter.getAsNullableDateTime('from_create_time');
         let toCreateTime = filter.getAsNullableDateTime('to_create_time');
         return (item) => {
