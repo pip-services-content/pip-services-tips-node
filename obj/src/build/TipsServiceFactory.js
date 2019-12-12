@@ -17,11 +17,11 @@ class TipsServiceFactory extends pip_services3_components_node_1.Factory {
         this.registerAsType(TipsServiceFactory.HttpServiceDescriptor, TipsHttpServiceV1_1.TipsHttpServiceV1);
     }
 }
+exports.TipsServiceFactory = TipsServiceFactory;
 TipsServiceFactory.Descriptor = new pip_services3_commons_node_1.Descriptor("pip-services-tips", "factory", "default", "default", "1.0");
 TipsServiceFactory.MemoryPersistenceDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-tips", "persistence", "memory", "*", "1.0");
 TipsServiceFactory.FilePersistenceDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-tips", "persistence", "file", "*", "1.0");
 TipsServiceFactory.MongoDbPersistenceDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-tips", "persistence", "mongodb", "*", "1.0");
 TipsServiceFactory.ControllerDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-tips", "controller", "default", "*", "1.0");
 TipsServiceFactory.HttpServiceDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-tips", "service", "http", "*", "1.0");
-exports.TipsServiceFactory = TipsServiceFactory;
 //# sourceMappingURL=TipsServiceFactory.js.map

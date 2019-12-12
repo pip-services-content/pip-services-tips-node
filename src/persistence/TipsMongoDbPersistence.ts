@@ -5,19 +5,18 @@ import { PagingParams } from 'pip-services3-commons-node';
 import { DataPage } from 'pip-services3-commons-node';
 import { AnyValueMap } from 'pip-services3-commons-node';
 import { TagsProcessor } from 'pip-services3-commons-node';
-import { IdentifiableMongoosePersistence } from 'pip-services3-mongoose-node';
+import { IdentifiableMongoDbPersistence } from 'pip-services3-mongodb-node';
 
 import { PartyReferenceV1 } from '../data/version1/PartyReferenceV1';
 import { TipV1 } from '../data/version1/TipV1';
 import { ITipsPersistence } from './ITipsPersistence';
-import { TipsMongooseSchema } from './TipsMongooseSchema';
 
 export class TipsMongoDbPersistence 
-    extends IdentifiableMongoosePersistence<TipV1, string> 
+    extends IdentifiableMongoDbPersistence<TipV1, string> 
     implements ITipsPersistence {
 
     constructor() {
-        super('tips', TipsMongooseSchema());
+        super('tips');
     }
 
     private composeFilter(filter: FilterParams): any {
